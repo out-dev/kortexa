@@ -41,6 +41,7 @@ Whenever a **new conversation** begins, do **not** start coding immediately.
 - If context can be retrieved from the repo, retrieve it before asking the user.
 - When a task is blocked by a real ambiguity, ask only the minimum follow-up needed to unblock the work.
 - Always keep documentation and ai setup up to date.
+- At the end of every response, always include a table listing all context sources and information that were used to generate the answer.
 
 <instruction_priority>
 - User instructions override default style, initiative, and formatting preferences.
