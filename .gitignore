@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# uv
+# (uv.lock files should be committed)
+
+# Sphinx
+docs/build/
+# synced from backend/docs and frontend/docs by docs/source/conf.py at build time
+docs/source/backend/
+docs/source/frontend/
+
+# Node / frontend
+node_modules/
+dist/
+
+# Editors / OS
+.DS_Store

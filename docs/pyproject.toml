@@ -1,0 +1,16 @@
+[project]
+name = "kortexa-docs"
+version = "0.1.0"
+description = "Sphinx documentation for kortexa"
+requires-python = ">=3.12"
+dependencies = [
+    "sphinx>=8.0",
+    "furo>=2024.8.6",
+    "myst-parser>=4.0",
+    "sphinx-autoapi>=3.0",
+]
+
+[dependency-groups]
+dev = [
+    "sphinx-autobuild>=2024.10.3",
+]
