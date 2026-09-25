@@ -10,7 +10,6 @@ release = "0.1.0"
 
 extensions = [
     "myst_parser",
-    "autoapi.extension",
 ]
 
 templates_path = ["_templates"]
@@ -23,11 +22,6 @@ source_suffix = {
 
 html_theme = "furo"
 html_static_path = ["_static"]
-
-# sphinx-autoapi: generate API docs directly from the backend source tree
-autoapi_type = "python"
-autoapi_dirs = ["../../backend/src"]
-autoapi_root = "backend/api"
 
 # Backend and frontend own their narrative docs (backend/docs, frontend/docs)
 # so they live next to the code; sync them into source/ before each build.

@@ -1,2 +1,0 @@
-"""Inbound application port definitions."""
-
