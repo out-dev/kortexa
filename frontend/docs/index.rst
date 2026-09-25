@@ -2,6 +2,8 @@ Frontend
 ========
 
 React frontend, built with Vite following Feature-Based Architecture.
+The implementation has been removed; the baseline details below are retained
+as historical reference documentation.
 
 Install and run the application from the ``frontend/`` directory::
 

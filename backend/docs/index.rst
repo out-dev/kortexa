@@ -2,6 +2,8 @@ Backend
 =======
 
 The Python backend is built with FastAPI and follows Hexagonal Architecture.
+The implementation has been removed; the baseline details below are retained
+as historical reference documentation.
 
 Development
 -----------
@@ -42,5 +44,5 @@ contains use cases. ``ports`` defines inbound and outbound interfaces.
 ``adapters`` connects those interfaces to HTTP and external services.
 ``infrastructure`` contains configuration and application wiring.
 
-The API reference is auto-generated from the backend source tree by
-``sphinx-autoapi``.
+The API reference is not generated because the backend source tree has been
+removed.
