@@ -62,16 +62,11 @@ uv sync                       # install Sphinx + extensions
 uv run sphinx-build -b html source build   # or: make html
 ```
 
-Narrative docs for each subproject live next to its code, not in `docs/`:
-`backend/docs/` and `frontend/docs/`. `docs/source/conf.py` copies them into
-`docs/source/backend/` and `docs/source/frontend/` at the start of every
-build (those copied folders are generated and gitignored — edit the sources
-in `backend/docs/`/`frontend/docs/` instead). Cross-cutting content
-(architecture overview, ADRs) lives directly in `docs/source/`.
-
-The backend's Python API reference under `backend/api/` is generated
-automatically from `backend/src` via `sphinx-autoapi` — do not hand-write it.
-Update the other `.rst` files under `docs/source/` whenever an architectural
+Backend and frontend documentation lives in `docs/source/backend/` and
+`docs/source/frontend/`. Cross-cutting content (architecture overview, ADRs)
+lives directly in `docs/source/`. The backend and frontend implementations
+have been removed; their retained project guides describe the former baseline.
+Update the `.rst` files under `docs/source/` whenever an architectural
 decision changes.
 
 ## Global conventions

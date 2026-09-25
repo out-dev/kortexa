@@ -11,9 +11,6 @@ __pycache__/
 
 # Sphinx
 docs/build/
-# synced from backend/docs and frontend/docs by docs/source/conf.py at build time
-docs/source/backend/
-docs/source/frontend/
 
 # Node / frontend
 node_modules/
