@@ -10,6 +10,7 @@ agent-agnostic AI setup.. These instructions apply to any AI coding assistant
 
 ```
 kortexa/
+├── .ai/        # AI Workflows and skills
 ├── backend/    # Python, vertical Slice Architecture for code organization and Hexagonal Architecture for dependency boundaries — see docs/source/backend
 ├── frontend/   # React, feature-based architecture — see docs/source/frontend
 ├── docs/       # Sphinx documentation
@@ -34,10 +35,13 @@ Whenever a **new conversation** begins, do **not** start coding immediately.
 - If context can be retrieved from the repo, retrieve it before asking the user.
 - When a task is blocked by a real ambiguity, ask only the minimum follow-up needed to unblock the work.
 - Always keep documentation up to date.
+- Omit subresponses and only output final response.
 - At the end of every response, always include a minimalistic table listing all context sources and information that were used to generate the answer.
 
 <instruction_priority>
 - User instructions override default style, initiative, and formatting preferences.
+- Always inspect ai skills in folder [sills](.ai/skills/)
+- Always use skill [ponytail](.ai/skills/ponytail/SKILL.md)
 - Safety, honesty, repository constraints, and permission constraints do not yield.
 - If a newer instruction conflicts with an older one, follow the newer instruction and preserve all non-conflicting earlier instructions.
 </instruction_priority>
