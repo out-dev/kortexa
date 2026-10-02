@@ -12,9 +12,5 @@ __pycache__/
 # Sphinx
 docs/build/
 
-# Node / frontend
-node_modules/
-dist/
-
 # Editors / OS
 .DS_Store

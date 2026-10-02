@@ -2,9 +2,9 @@
 
 ## Project overview
 
-kortexa is a monorepo with a Python backend and a React frontend, built with an
-agent-agnostic AI setup.. These instructions apply to any AI coding assistant
-(GitHub Copilot, Cursor, Claude Code, Codex, ...) working in this repository.
+kortexa is a Python backend with agent-agnostic AI support. These instructions
+apply to any AI coding assistant (GitHub Copilot, Cursor, Claude Code, Codex,
+...) working in this repository.
 
 ## Repository structure
 
@@ -12,7 +12,6 @@ agent-agnostic AI setup.. These instructions apply to any AI coding assistant
 kortexa/
 ├── .ai/        # AI Workflows and skills
 ├── backend/    # Python, vertical Slice Architecture for code organization and Hexagonal Architecture for dependency boundaries — see docs/source/backend
-├── frontend/   # React, feature-based architecture — see docs/source/frontend
 ├── docs/       # Sphinx documentation
 ```
 

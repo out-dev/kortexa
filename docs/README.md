@@ -1,7 +1,7 @@
 # Documentation
 
-This folder contains kortexa's Sphinx documentation project. It is managed
-independently from the backend and frontend projects with `uv`.
+This folder contains kortexa's Sphinx documentation project, managed
+independently with `uv`.
 
 ## Build
 
@@ -23,9 +23,8 @@ uv run sphinx-autobuild source build
 ## Structure
 
 - `source/architecture/` contains shared architecture documentation.
-- `source/backend/` and `source/frontend/` contain the retained project guides.
+- `source/backend/` contains the backend guide.
 - `source/index.rst` defines the documentation table of contents.
 - `source/conf.py` configures Sphinx.
 
-Backend and frontend guides describe the former baseline; their implementations
-have been removed. Update documentation in `source/` directly.
+Update documentation in `source/` directly.
