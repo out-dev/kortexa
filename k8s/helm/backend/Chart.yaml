@@ -1,0 +1,7 @@
+apiVersion: v2
+name: kortexa
+description: Local development chart for the kortexa backend
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+

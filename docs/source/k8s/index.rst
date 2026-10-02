@@ -7,7 +7,7 @@ Kubernetes Local Development Setup
 
  core
  cnpg
-
+ backend
 
 
 
