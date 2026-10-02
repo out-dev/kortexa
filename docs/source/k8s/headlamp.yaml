@@ -1,0 +1,1 @@
+kubectl create token headlamp -n headlamp --duration=1h
