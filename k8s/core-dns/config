@@ -1,0 +1,9 @@
+.:53 {
+    hosts {
+        172.18.0.4 *.out-dev.localhost
+        fallthrough
+    }
+
+    forward . 8.8.8.8 8.8.4.4
+    cache 30
+}

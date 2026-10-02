@@ -1,27 +1,59 @@
 
 
-Install docker or Podman
-Follow the official installation guide for Docker: https://docs.docker.com/get-docker/
-Or for Podman: https://podman.io/getting-started/installation
-If you use Podman ensure rootless mode is properly configured.
+Local Kubernetes Cluster Setup
+===============================
 
-Install kind
-Follow the official installation guide for kind: https://kind.sigs.k8s.io/docs/user/quick-start/
-and execute command kind create cluster --config=cluster-config.yaml
+This repository uses kind to set up a local Kubernetes cluster for development purposes.
+First, ensure you have Docker or Podman installed on your system. If you use Podman, ensure rootless mode is properly configured.
 
-Install the Gateway API CRDs before Traefik
-The Traefik configuration creates ``Gateway`` and ``GatewayClass`` resources.
-Install the Gateway API CRDs before installing the Traefik Helm chart:
+Install kind using the official installation guide: https://kind.sigs.k8s.io/docs/user/quick-start/.
+Navigate to the directory containing the cluster configuration file k8s/kind/cluster/cluster-config.yaml.
+Execute the following command to create the cluster:
+
+.. code-block:: console
+
+   kind create cluster --config=cluster-config.yaml
+
+We use traefik as the ingress controller for the local Kubernetes cluster. First install the missing Gateway API CRDs.
 
 .. code-block:: console
 
    kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.6.2/standard-install.yaml
    kubectl wait --for=condition=Established --timeout=60s crd/gatewayclasses.gateway.networking.k8s.io crd/gateways.gateway.networking.k8s.io
 
-Install Traefik as the cluster's ingress controller
-Follow the official Traefik installation guide: https://doc.traefik.io/traefik/getting-started/install-traefik/
+Wait until the Gateway API CRDs are established before proceeding. Then you can install Traefik as the ingress controller.
+Follow the official Traefik installation guide for the next steps https://doc.traefik.io/traefik/getting-started/install-traefik/.
 
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=*.docker.localhost"
-kubectl create namespace traefik
-kubectl create secret tls local-selfsigned-tls --cert=tls.crt --key=tls.key --namespace traefik
-helm install traefik traefik/traefik --namespace traefik --values values.yaml
+To simulate a cloud provider for the local Kubernetes cluster, we use coud-provider-kind https://github.com/kubernetes-sigs/cloud-provider-kind. 
+Clone the repository and build a new executable for you host. 
+
+.. code-block:: console
+
+   git clone https://github.com/kubernetes-sigs/cloud-provider-kind.git
+   cd cloud-provider-kind
+   go install sigs.k8s.io/cloud-provider-kind@latest
+   cd ./bin
+   ./cloud-provider-kind
+
+Check your traefik load balancer:      
+
+.. code-block:: console
+
+   kubectl get services -n traefik
+
+If everything worked correctly, you should see the Traefik service listed with an external IP or a load balancer IP.
+
+To get a nice name resolution we use CoreDNS. Download CoreDNS https://github.com/coredns/coredns and run 
+
+.. code-block:: console
+
+   coredns -conf=k8s/core-dns/config
+
+You can test your local setup by accessing https://dashboard.out-dev.localhost/dashboard/ you should see the Traefik dashboard.
+
+
+
+
+
+
+
