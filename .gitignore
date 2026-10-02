@@ -14,3 +14,7 @@ docs/build/
 
 # Editors / OS
 .DS_Store
+
+
+# Ignore DevSpace cache and log folder
+.devspace/
