@@ -10,6 +10,10 @@ Runtime Dependencies
 | ``fastapi-microsoft-identity``   | FastAPI integration for Microsoft Entra ID authentication and                |
 |                                  | authorization.                                                               |
 +----------------------------------+------------------------------------------------------------------------------+
+| ``jinja2``                       | HTML template rendering for server-rendered pages and HTMX fragments.        |
++----------------------------------+------------------------------------------------------------------------------+
+| ``python-multipart``             | Form-data parsing for HTML form submissions.                                 |
++----------------------------------+------------------------------------------------------------------------------+
 
 Development Dependencies
 ========================

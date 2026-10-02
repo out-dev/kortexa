@@ -36,6 +36,8 @@ the guide for each architectural element.
  adapters
  api-endpoints
  dependencies-wiring
+ htmx-ui
+ packages
 
 Development
 ===========
