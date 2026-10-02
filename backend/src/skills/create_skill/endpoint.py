@@ -1,16 +1,12 @@
 from uuid import UUID
 
-from fastapi import APIRouter, status
-from pydantic import BaseModel, Field
+from django.http import HttpRequest, JsonResponse
+from django.views.decorators.http import require_POST
+from pydantic import BaseModel, Field, ValidationError
 
 from skills.create_skill.use_case import CreateSkillCommand
-from skills.dependencies import CreateSkillDep
+from skills.dependencies import get_create_skill
 from skills.domain.skill import Skill
-
-router = APIRouter(
-    prefix="/orders",
-    tags=["orders"],
-)
 
 
 class CreateSkillRequest(BaseModel):
@@ -27,25 +23,42 @@ class SkillResponse(BaseModel):
     def from_domain(cls, skill: Skill) -> "SkillResponse":
         return cls(
             id=skill.id,
-            skill_id_str=skill.skill_id_str,
+            skill_id_str=skill.skill_id,
             content=skill.content,
         )
 
 
-@router.post(
-    "",
-    response_model=SkillResponse,
-    status_code=status.HTTP_201_CREATED,
-)
-def create_skill(
-    request: CreateSkillRequest,
-    use_case: CreateSkillDep,
-) -> SkillResponse:
-    skill = use_case(
+@require_POST
+def create_skill(request: HttpRequest) -> JsonResponse:
+    try:
+        payload = CreateSkillRequest.model_validate_json(
+            request.body.decode("utf-8")
+        )
+    except UnicodeDecodeError:
+        return JsonResponse(
+            {
+                "detail": [
+                    {
+                        "type": "json_invalid",
+                        "loc": ["body"],
+                        "msg": "Request body must be UTF-8 encoded JSON",
+                    }
+                ]
+            },
+            status=422,
+        )
+    except ValidationError as error:
+        detail = [
+            {**item, "loc": ["body", *item["loc"]]}
+            for item in error.errors()
+        ]
+        return JsonResponse({"detail": detail}, status=422)
+
+    skill = get_create_skill()(
         CreateSkillCommand(
-            skill_id_str=request.skill_id_str,
-            content=request.content,
+            skill_id_str=payload.skill_id_str,
+            content=payload.content,
         )
     )
-
-    return SkillResponse.from_domain(skill)
+    response = SkillResponse.from_domain(skill)
+    return JsonResponse(response.model_dump(mode="json"), status=201)

@@ -1,10 +1,11 @@
 Backend
 =======
 
-Organize the application by **vertical features/use cases**, while applying **Hexagonal Architecture** inside each 
-feature to separate domain logic, ports, and adapters. 
-Use FastAPI `Depends` only at the outer boundary for wiring, keeping domain and use-case code independent of 
-FastAPI, databases, and infrastructure.
+Organize the application by **vertical features/use cases**, while applying
+**Hexagonal Architecture** inside each feature to separate domain logic,
+ports, and adapters. Use Django views and URL configuration at the HTTP
+boundary, keeping domain and use-case code independent of Django, databases,
+and infrastructure.
 
 Project Structure
 =================
@@ -17,12 +18,14 @@ the guide for each architectural element.
    backend/
    ├── src/
    │   ├── main.py
+   │   ├── config/ : Django settings, URL configuration, and server entry points
    │   └── skills/ :doc:`Business Features <business_feature>`
    │       ├── domain/
    │       ├── ports/
    │       ├── adapters/
    │       └── create_skill/
    ├── tests/
+   ├── manage.py
    └── pyproject.toml
 
 .. toctree::
@@ -47,4 +50,4 @@ Install the backend and its development tools with::
    uv sync
    uv run pytest
    uv run ruff check .
-   uv run uvicorn main:app --reload
+   uv run python manage.py runserver

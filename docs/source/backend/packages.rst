@@ -4,15 +4,9 @@ Runtime Dependencies
 +----------------------------------+------------------------------------------------------------------------------+
 | Package                          | Description                                                                  |
 +==================================+==============================================================================+
-| ``fastapi``                      | Python web framework for building APIs, with request validation and          |
-|                                  | automatic OpenAPI documentation.                                             |
+| ``django``                       | Web framework with URL routing, views, and ASGI/WSGI entry points.           |
 +----------------------------------+------------------------------------------------------------------------------+
-| ``fastapi-microsoft-identity``   | FastAPI integration for Microsoft Entra ID authentication and                |
-|                                  | authorization.                                                               |
-+----------------------------------+------------------------------------------------------------------------------+
-| ``jinja2``                       | HTML template rendering for server-rendered pages and HTMX fragments.        |
-+----------------------------------+------------------------------------------------------------------------------+
-| ``python-multipart``             | Form-data parsing for HTML form submissions.                                 |
+| ``pydantic``                     | Validation and serialization of JSON API request and response data.          |
 +----------------------------------+------------------------------------------------------------------------------+
 
 Development Dependencies
@@ -24,6 +18,4 @@ Development Dependencies
 | ``pytest``  | Test runner.                                                         |
 +-------------+----------------------------------------------------------------------+
 | ``ruff``    | Python linter and formatter.                                         |
-+-------------+----------------------------------------------------------------------+
-| ``uvicorn`` | ASGI server for running the FastAPI application during development.  |
 +-------------+----------------------------------------------------------------------+

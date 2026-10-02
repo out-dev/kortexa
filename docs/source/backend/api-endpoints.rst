@@ -10,5 +10,6 @@ Endpoints should not own business rules or persistence behavior. Keeping
 those concerns in the application and domain layers means the core does not
 need to know that an operation was invoked over HTTP.
 
-In kortexa, ``skills/create_skill/endpoint.py`` uses FastAPI and Pydantic to
-define a request model, call the create-skill use case, and return a response.
+In kortexa, ``skills/create_skill/endpoint.py`` uses a Django view and Pydantic
+to validate JSON input, call the create-skill use case, and return a JSON
+response. Django's URL configuration maps ``POST /skills/orders`` to the view.

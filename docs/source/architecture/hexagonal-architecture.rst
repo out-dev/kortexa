@@ -95,10 +95,10 @@ may depend on domain concepts and port contracts. Adapters may depend on the
 core contracts, but the domain and application layers must not import adapter
 implementations.
 
-Framework code belongs at the edge. FastAPI routers, Pydantic transport
-schemas, SQLAlchemy models, cloud SDKs, and provider-specific request formats
-should be translated at adapter boundaries rather than passed through the
-core.
+Framework code belongs at the edge. Django views and URL configuration,
+Pydantic transport schemas, ORM models, cloud SDKs, and provider-specific
+request formats should be translated at adapter boundaries rather than
+passed through the core.
 
 Domain-Driven Design Relationship
 ---------------------------------
@@ -186,7 +186,7 @@ Relation to kortexa
 -------------------
 
 The Python backend uses this architecture to keep business behavior separate
-from FastAPI, persistence, external services, and AI providers. AI providers
+from Django, persistence, external services, and AI providers. AI providers
 are outbound adapters behind a provider port, allowing the selected provider
 to change without coupling the domain or application layer to one vendor.
 

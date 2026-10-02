@@ -1,7 +1,7 @@
 HTMX UI
 =======
 
-The browser UI is a server-rendered interface in the FastAPI application.
+The browser UI can be a server-rendered interface in the Django application.
 HTMX enhances ordinary HTML links and forms with partial updates; it does not
 own business behavior or introduce a separate frontend application.
 
@@ -11,23 +11,20 @@ Architecture
 Treat page and fragment handlers as inbound HTTP adapters. They validate
 request data, invoke the same feature use cases as the JSON API, and render
 HTML. Keep domain logic, application use cases, ports, and infrastructure
-adapters independent of FastAPI, Jinja2, and HTMX. Keep JSON API routes and
+adapters independent of Django's HTTP layer and HTMX. Keep JSON API routes and
 HTML UI routes separate so their response contracts remain explicit.
 
 Organize UI handlers within their vertical feature, next to the corresponding
 use case and API endpoint. Shared template configuration and static assets
-belong at the application boundary; templates can be grouped by feature:
+belong at the application boundary; templates can use Django's built-in template engine and be grouped by feature:
 
 .. code-block:: text
 
    backend/
    ├── src/
-   │   ├── main.py
-   │   ├── web/
-   │   │   ├── templates.py
-   │   │   └── static/
-   │   │       ├── htmx.min.js
-   │   │       └── app.css
+   │   ├── config/
+   │   │   ├── settings.py
+   │   │   └── urls.py
    │   └── skills/
    │       ├── domain/
    │       ├── ports/
@@ -40,12 +37,15 @@ belong at the application boundary; templates can be grouped by feature:
    │           ├── use_case.py
    │           ├── endpoint.py
    │           └── ui_endpoint.py
-   └── templates/
-       ├── base.html
-       └── skills/
-           ├── list.html
-           ├── _skill_list.html
-           └── _skill_form.html
+   ├── templates/
+   │   ├── base.html
+   │   └── skills/
+   │       ├── list.html
+   │       ├── _skill_list.html
+   │       └── _skill_form.html
+   └── static/
+       ├── htmx.min.js
+       └── app.css
 
 Keep the existing API route contract. Mount browser routes under a distinct
 prefix such as ``/ui``. A page route renders the full document; HTMX
@@ -70,8 +70,8 @@ against CSRF.
 
 HTMX is a browser JavaScript asset, not a Python dependency. Serve a pinned
 HTMX release as a local static asset rather than adding a frontend build
-pipeline. Jinja2 renders templates, and ``python-multipart`` supports HTML
-form parsing. These are backend runtime dependencies.
+pipeline. Django provides template rendering and form parsing; include its
+CSRF protection when implementing state-changing browser forms.
 
 Initial slice
 -------------

@@ -3,7 +3,7 @@ Domain
 
 The domain is the business core of the backend. It represents the concepts,
 rules, and invariants that give the product its meaning. Domain code should
-not depend on FastAPI, databases, or other infrastructure, so business rules
+not depend on Django, databases, or other infrastructure, so business rules
 remain usable and testable when those technologies change.
 
 Domain models commonly include entities with identity, value objects defined
