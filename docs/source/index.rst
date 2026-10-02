@@ -8,3 +8,4 @@ kortexa documentation
    architecture/index
    backend/index
    frontend/index
+   k8s/index
